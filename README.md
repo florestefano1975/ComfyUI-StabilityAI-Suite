@@ -18,6 +18,14 @@ Thanks to a change in the general code, the  unique __id__ are automatically sav
 
 ![Creative Upscale Recover File](/images/creative_upscale_recover_file.png)
 
+## Usage:
+
+Add API key to environment variable "`SAI_API_KEY`".
+
+Alternatively you can write your API key to file "`sai_platform_key.txt`".
+
+You can also use and/or override the above by entering your API key in the '`api_key_override`' field of each node.
+
 ## Other projects
 
 - [ComfyUI Portrait Master](https://github.com/florestefano1975/comfyui-portrait-master/)
