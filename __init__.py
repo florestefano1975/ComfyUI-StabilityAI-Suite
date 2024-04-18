@@ -1,11 +1,24 @@
-from .stability_api import StabilityCreativeUpscale, StabilityRemoveBackground, StabilityInpainting, StabilityCore, StabilitySearchAndReplace, StabilityOutpainting, StabilitySD3
+from .stability_api import StabilityCreativeUpscale, StabilityCreativeUpscaleRecover, StabilityRemoveBackground, StabilityInpainting, StabilityCore, StabilitySearchAndReplace, StabilityOutpainting, StabilitySD3
 
 NODE_CLASS_MAPPINGS = {
-    "Stability Creative Upscale": StabilityCreativeUpscale,
-    "Stability Remove Background": StabilityRemoveBackground,
-    "Stability Inpainting": StabilityInpainting,
-    "Stability Image Core": StabilityCore,
-    "Stability Search and Replace": StabilitySearchAndReplace,
-    "Stability Outpainting": StabilityOutpainting,
-    "Stability SD3": StabilitySD3,
+    "StabilityAI Suite - Creative Upscale": StabilityCreativeUpscale,
+    "StabilityAI Suite - Creative Upscale Recover File": StabilityCreativeUpscaleRecover,
+    "StabilityAI Suite - Remove Background": StabilityRemoveBackground,
+    "StabilityAI Suite - Inpainting": StabilityInpainting,
+    "StabilityAI Suite - Image Core + Style Preset": StabilityCore,
+    "StabilityAI Suite - Search and Replace": StabilitySearchAndReplace,
+    "StabilityAI Suite - Outpainting": StabilityOutpainting,
+    "StabilityAI Suite - SD3": StabilitySD3,
+}
+from .stability_api import StabilityCreativeUpscale, StabilityCreativeUpscaleRecover, StabilityRemoveBackground, StabilityInpainting, StabilityCore, StabilitySearchAndReplace, StabilityOutpainting, StabilitySD3
+
+NODE_CLASS_MAPPINGS = {
+    "StabilityAI Suite - Creative Upscale": StabilityCreativeUpscale,
+    "StabilityAI Suite - Creative Upscale Recover File": StabilityCreativeUpscaleRecover,
+    "StabilityAI Suite - Remove Background": StabilityRemoveBackground,
+    "StabilityAI Suite - Inpainting": StabilityInpainting,
+    "StabilityAI Suite - Image Core + Style Preset": StabilityCore,
+    "StabilityAI Suite - Search and Replace": StabilitySearchAndReplace,
+    "StabilityAI Suite - Outpainting": StabilityOutpainting,
+    "StabilityAI Suite - SD3": StabilitySD3,
 }

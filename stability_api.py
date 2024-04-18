@@ -7,6 +7,9 @@ from torchvision.transforms import ToPILImage
 from io import BytesIO
 import os
 import time
+from datetime import datetime
+import base64
+import io
 
 API_KEY = os.environ.get("SAI_API_KEY")
 
@@ -38,7 +41,7 @@ class StabilityBase:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "call"
-    CATEGORY = "Stability"
+    CATEGORY = "AI WizArt/Stability AI Suite"
 
     def call(self, *args, **kwargs):
         
@@ -55,6 +58,10 @@ class StabilityBase:
             files = self._get_files(buffered, **kwargs)
         else:
             kwargs.pop("strength", None)
+        
+        style = kwargs.get('style', False)
+        if style is False:
+            kwargs.pop('style_preset', None)
 
         headers = {
             "Authorization": API_KEY,
@@ -82,6 +89,7 @@ class StabilityBase:
         if response.status_code == 200:
             if self.POLL_ENDPOINT != "":
                 id = response.json().get("id")
+                logFile(f"Image/video ID for recovery: {id}") # saving id for recovery in case of malfunction
                 timeout = 240
                 start_time = time.time()
                 while True:
@@ -149,6 +157,8 @@ class StabilityCore(StabilityBase):
             "seed": ("INT", {"default": 0, "min": 0, "max": 4294967294}),
             "output_format": (["png", "webp", "jpeg"],),
             "aspect_ratio": (["16:9", "1:1", "21:9", "2:3", "3:2", "4:5", "5:4", "9:16", "9:21"],),
+            "style": ("BOOLEAN", {"default": False}),
+            "style_preset": (["3d-model", "analog-film", "anime", "cinematic", "comic-book", "digital-art", "enhance", "fantasy-art", "isometric", "line-art", "low-poly", "modeling-compound", "neon-punk", "origami", "photographic", "pixel-art", "tile-texture"],),
             "api_key_override": ("STRING", {"multiline": False}),
         }
     }
@@ -258,7 +268,7 @@ class StabilityOutpainting(StabilityBase):
             "left": ("INT", {"default": 0, "min": 0, "max": 512}),
             "right": ("INT", {"default": 0, "min": 0, "max": 512}),
             "up": ("INT", {"default": 0, "min": 0, "max": 512}),
-            "down": ("INT", {"default": 0, "min": 0, "max": 512}),\
+            "down": ("INT", {"default": 0, "min": 0, "max": 512}),
         },
         "optional": {
             "prompt": ("STRING", {"multiline": True}),
@@ -267,3 +277,63 @@ class StabilityOutpainting(StabilityBase):
             "api_key_override": ("STRING", {"multiline": False}),
         },
     }
+
+# ========================================================
+# FILE RECOVER
+# ========================================================
+
+class StabilityCreativeUpscaleRecover(StabilityBase):
+    def __init__(self):
+        pass
+
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "image_id": ("STRING", {
+                    "multiline": False
+                })
+            }
+        }
+    
+    RETURN_TYPES = ("IMAGE",)
+    RETURN_NAMES = ("image_out",)
+    FUNCTION = "creativeUpscaleRecover"
+
+    def creativeUpscaleRecover(self, image_id):
+        get_code = 202
+        while get_code == 202:
+            response_get = requests.request(
+                "GET",
+                f"https://api.stability.ai/v2beta/stable-image/upscale/creative/result/{image_id}",
+                headers={
+                    "accept": "application/json",
+                    "authorization": f"Bearer {API_KEY}"
+                },
+            )
+            get_code = response_get.status_code
+            time.sleep(10)
+            print("Waiting image...")
+        if response_get.status_code == 200:
+            json_data = response_get.json()
+            image_base64 = json_data['image']
+            image_bytes = base64.b64decode(image_base64)
+            image_data = Image.open(io.BytesIO(image_bytes))
+            output_t = pil2tensor(image_data)
+            return (output_t,)
+        else:
+            print(response_get.json())
+
+# ========================================================
+# UTILITIES
+# ========================================================
+
+def logFile(text):
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    new_entry = f"{now} - {text}"
+    logfile = os.path.join(dir_path, 'log.txt')
+    with open(logfile, "a") as file:
+        file.write(new_entry + "\n")
+
+def pil2tensor(image):
+    return torch.from_numpy(np.array(image).astype(np.float32) / 255.0).unsqueeze(0)
