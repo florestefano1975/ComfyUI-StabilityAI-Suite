@@ -17,3 +17,8 @@ Thanks to a change in the general code, the  unique __id__ are automatically sav
 - Paste the id into the __Creative Upscale Recover File__ node to recover the lost image.
 
 ![Creative Upscale Recover File](/images/creative_upscale_recover_file.png)
+
+## Other projects
+
+- [ComfyUI Portrait Master](https://github.com/florestefano1975/comfyui-portrait-master/)
+- [ComfyUI Prompt Composer](https://github.com/florestefano1975/comfyui-prompt-composer/)
