@@ -11,7 +11,9 @@ In the official version there is no option to set one of the available __styles_
 ## Creative Upscale Recover File 
 
 The node for the creative uspcale performs two steps: generation and recovery of the generated image. If unfortunately your PC has a crash or suddenly lacks an Internet connection, the second step cannot complete and you risk losing the generated image and the credits used. Fortunately, the images are archived for 24 hours by StabilityAI.
-Thanks to a change in the general code, the  unique __id__ are automatically saved within the __log.txt__ file. This file is automatically created and saved in the same folder as the custom node. Follow these steps now:
+Thanks to a change in the general code, the  unique __id__ are automatically saved within the __log.txt__ file. This file is automatically created and saved in the same folder as the custom node.
+
+Follow these steps:
 
 - Open the file and copy the desired `id`.
 - Paste the `id` into the __Creative Upscale Recover File__ node to recover the lost image.
