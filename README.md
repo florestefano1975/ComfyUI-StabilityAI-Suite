@@ -1,20 +1,19 @@
 # ComfyUI StabilityAI Suite
 
-Questo fork della repository ufficiale di StabilityAI contiene una serie di migliorie e implementazioni.
+This fork of the official StabilityAI repository contains a number of enhancements and implementations.
 
 ## Image Core + Style Preset
 
-Nella versione ufficiale non è presente l'opzione per impostare uno dei __stili__ disponibili. In questo fork il nodo è stato aggiornato: contiene un nuovo switch vero/falso per attivare gli stili, e il relativo selettore.
+In the official version there is no option to set one of the available __styles__. In this fork the node has been updated: it contains a new true/false switch to activate styles, and the corresponding selector.
 
 ![Image Core + Style Preset](/images/image_core_style.png)
 
 ## Creative Upscale Recover File
 
-Il nodo per l'uspcale creativo esegue due passaggi: la generazione e il recupero dell'immagine generata. Se malauguratamente il PC ha un blocco o manca improvvismente la connessione internet, la seconda fase non può completarsi e rischiate di perdere l'immagine generata e i crediti utilizzati. Per fortuna le immagini vengono archiviate per 24 ore da StabilityAI.
+The node for the creative uspcale performs two steps: generation and recovery of the generated image. If unfortunately your PC has a crash or suddenly lacks an Internet connection, the second step cannot complete and you risk losing the generated image and the credits used. Fortunately, the images are archived for 24 hours by StabilityAI.
+Thanks to a change in the general code, the  unique __id__ are automatically saved within the __log.txt__ file. This file is automatically created and saved in the same folder as the custom node. Follow these steps now:
 
-Grazie a una modifica del codice generale, gli __id univoci__ vengono salvati automaticamente all'interno del file __log.txt__. Questo file viene automaticamente creato e salvato nella stessa cartella del custom node. Segui ora questo passaggi:
-
-- Apri il file e copia l'id desiderato.
-- Incolla l'id nel nodo __Creative Upscale Recover File__ per recuperare l'immagine persa.
+- Open the file and copy the desired id.
+- Paste the id into the __Creative Upscale Recover File__ node to recover the lost image.
 
 ![Creative Upscale Recover File](/images/creative_upscale_recover_file.png)
