@@ -8,7 +8,9 @@ This fork of the official StabilityAI repository contains a number of enhancemen
 
 ## Image Core + Style Preset
 
-In the official version there is no option to set one of the available __styles__. In this fork the node has been updated: it contains a new true/false switch to activate styles, and the corresponding selector.
+In this fork the node **Image Core** has been updated: it contains a new true/false switch to activate styles, and the corresponding selector.
+
+**I submitted a change request in the original repository to implement the styles. The change was accepted, so find the settings for the styles in the official node as well.**
 
 ![Image Core + Style Preset](/images/image_core_style.png)
 
