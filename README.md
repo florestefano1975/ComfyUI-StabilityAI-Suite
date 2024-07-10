@@ -6,6 +6,10 @@ This fork of the official StabilityAI repository contains a number of enhancemen
 
 ➡️ https://ko-fi.com/stefanoflore75
 
+Buy my workflows:
+
+➡️ https://stefanoflore.it/download/
+
 ## Image Core + Style Preset
 
 In this fork the node **Image Core** has been updated: it contains a new true/false switch to activate styles, and the corresponding selector.
