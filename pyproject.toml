@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-stabilityai-suite"
+description = "This fork of the official StabilityAI repository contains a number of enhancements and implementations."
+version = "1.0.0"
+license = "LICENSE"
+
+[project.urls]
+Repository = "https://github.com/florestefano1975/ComfyUI-StabilityAI-Suite"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-StabilityAI-Suite"
+Icon = ""
